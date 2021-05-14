@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CHECK_ADMIN_GUEST', ['except' => ['logout']]);
+        $this->middleware('CHECK_ADMIN_GUEST')->except('logout');
     }
 
     /**
