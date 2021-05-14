@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 /**
  * XTREMIS INFOTECH
  * ------------------------------------------------------------------------------
@@ -25,6 +27,11 @@
  * CONSTANT HELPER FUNCTIONS
  *---------------------------------------------------------------
  */
+
+function XI_ADMIN()
+{
+    return Auth::guard('admin')->User();
+}
 
 /**
  * Returns minimum char limit

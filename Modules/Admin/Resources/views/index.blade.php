@@ -4,6 +4,9 @@
     <h1>Hello World</h1>
 
     <p>
-        This view is loaded from module: {!! config('admin.name') !!}
+        welcome: {{ XI_ADMIN()->name }}
+        <br>
+
+        <a href="{{ route('admin.logout') }}">Logout</a>
     </p>
 @endsection
