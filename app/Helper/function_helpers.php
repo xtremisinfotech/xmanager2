@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Firms;
+
 /**
  * XTREMIS INFOTECH
  * ------------------------------------------------------------------------------
@@ -25,3 +27,19 @@
  * HELPER FUNCTIONS
  *---------------------------------------------------------------
  */
+
+/**
+ * Returns minimum char limit
+ * @param []
+ * @return []
+ * @author Mahiman Parmar
+ */
+function getFirmList()
+{
+    return Firms::all();
+}
+
+function getFirm($id)
+{
+    return Firms::find($id);
+}

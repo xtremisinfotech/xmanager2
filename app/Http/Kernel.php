@@ -66,5 +66,10 @@ class Kernel extends HttpKernel
         // XI CUSTOM MIDDLEWARES LIST
         'CHECK_ADMIN_GUEST' => \App\Http\Middleware\CheckAdminGuest::class,
         'CHECK_ADMIN_LOGIN' => \App\Http\Middleware\CheckAdminLogin::class,
+        'isActive' => \App\Http\Middleware\CheckUserStatus::class,
+        
+        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
     ];
 }

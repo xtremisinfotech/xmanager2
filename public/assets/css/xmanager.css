@@ -1,0 +1,15 @@
+.error {
+    color: red;
+}
+
+.act-edit, .act-delete, .act-view {
+    color: grey;
+}
+
+.act-delete:hover {
+    color: red;
+}
+
+.act-view:hover {
+    color: #1eb000;
+}
