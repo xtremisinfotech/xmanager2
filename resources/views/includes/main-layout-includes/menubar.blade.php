@@ -1,5 +1,5 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-2">
-    <a href="{{ url('/') }}" class="brand-link">
+    <a href="{{ route('home') }}" class="brand-link">
         <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="{{ config('app.name') }} Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8;margin-top: 0px;">
         <span class="brand-text font-weight-light" style="margin-top:-10px">{{ config('app.name') }}</span>
@@ -9,14 +9,14 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ url('/') }}" class="nav-link">
+                    <a href="{{ route('home') }}" class="nav-link {{ (\Request::route()->getName() =='home') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 @if (Gate::check('Firms List') || Gate::check('Firms Create') || Gate::check('Firms Edit') || Gate::check('Firms Delete'))
                     <li class="nav-item">
-                        <a href="{{ url('/Firms') }}" class="nav-link">
+                        <a href="{{ route('Firms.index') }}" class="nav-link {{ (in_array(\Request::route()->getName(), ["Firms.index", "Firms.create", "Firms.edit", "Firms.view"])) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Manage Firms</p>
                         </a>
@@ -24,7 +24,7 @@
                 @endif
                 @if (Gate::check('Customer Vendor List') || Gate::check('Customer Vendor Create') || Gate::check('Customer Vendor Edit') || Gate::check('Customer Vendor Delete'))
                     <li class="nav-item">
-                        <a href="{{ url('/CustVend') }}" class="nav-link">
+                        <a href="{{ route('CustVend.index') }}" class="nav-link {{ (in_array(\Request::route()->getName(), ["CustVend.index", "CustVend.create", "CustVend.edit", "CustVend.view"])) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Customer / Vendor</p>
                         </a>
@@ -32,7 +32,7 @@
                 @endif
                 @if (Gate::check('Product Category List') || Gate::check('Product Category Create') || Gate::check('Product Category Edit') || Gate::check('Product Category Delete'))
                     <li class="nav-item">
-                        <a href="{{ url('/ProductCategory') }}" class="nav-link">
+                        <a href="{{ route('ProductCategory.index') }}" class="nav-link {{ (in_array(\Request::route()->getName(), ["ProductCategory.index", "ProductCategory.create", "ProductCategory.edit", "ProductCategory.view"])) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Product Category</p>
                         </a>

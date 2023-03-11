@@ -59,16 +59,12 @@ class ProductCategoryController extends Controller
             'CategoryName.max'          =>  'Please enter category name in max 50 character.',
         ]);
 
-        // $ProductCategory = ProductCategory::create([
-        //     'CategoryName'      =>  ucwords($request->CategoryName)
-        // ]);
-
-        $this->model->Create($request);
-
-        
+        $ProductCategory = ProductCategory::create([
+            'CategoryName'      =>  ucwords($request->CategoryName)
+        ]);        
 
         if ($ProductCategory->wasRecentlyCreated == true) {
-            return redirect('/ProductCategory')->with(['type' => 'Success', 'message' => 'Product Category Created Successfully!']);
+            return redirect()->route('ProductCategory.index')->with(['type' => 'Success', 'message' => 'Product Category Created Successfully!']);
         } else {
             return redirect()->back()->withInput()->with(['type' => 'Error', 'message' => 'Failed To Create Product Category!']);
         }
@@ -121,7 +117,7 @@ class ProductCategoryController extends Controller
         ]);
 
         if ($ProductCategory) {
-            return redirect('/ProductCategory')->with(['type' => 'Success', 'message' => 'Product Category Updated Successfully!']);
+            return redirect()->route('ProductCategory.index')->with(['type' => 'Success', 'message' => 'Product Category Updated Successfully!']);
         } else {
             return redirect()->back()->withInput()->with(['type' => 'Error', 'message' => 'Failed To Update Product Category!']);
         }
@@ -139,7 +135,7 @@ class ProductCategoryController extends Controller
 
         if ($ProductCategory) {
             $ProductCategory->delete();
-            return redirect('/ProductCategory')->with(['type' => 'Success', 'message' => 'Product Category Deleted Successfully!']);
+            return redirect()->route('ProductCategory.index')->with(['type' => 'Success', 'message' => 'Product Category Deleted Successfully!']);
         } else {
             return redirect()->back()->with(['type' => 'Error', 'message' => 'No Product Category To Delete!']);
         }

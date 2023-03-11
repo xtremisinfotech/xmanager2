@@ -13,9 +13,4 @@ class ProductCategory extends Model
     protected $fillable = [
         'CategoryName',
     ];
-
-    public function Create(Request $request)
-    {
-        
-    }
 }

@@ -23,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
-|---------------------------------------------------------------------------
+|===========================================================================
 | Clear Cache Routes
-|---------------------------------------------------------------------------
+|===========================================================================
 */
 
 Route::get('/clear-cache', function () {
@@ -36,13 +36,7 @@ Route::get('/clear-cache', function () {
 	return 'All Cache Erase';
 });
 
-/* ----------------------------- End Routes ----------------------------- */
-
-/*
-|---------------------------------------------------------------------------
-| User / Auth Routes
-|---------------------------------------------------------------------------
-*/
+/* ============================= End Routes ============================= */
 
 Auth::routes();
 
@@ -58,40 +52,49 @@ Route::get('/', function () {
 
 Route::group(['middleware'	=> ['auth', 'isActive']], function () {
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+	/*
+	|===========================================================================
+	| User / Auth Routes
+	|===========================================================================
+	*/
+	Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('/UpdateProfile', function () {
         return view('users.update_profile');
-    });
+    })->name('UpdateProfile');
 
-    Route::post('/UpdatePersonalInfo', [UserController::class, 'UpdatePersonalInfo']);
+    Route::post('/UpdatePersonalInfo', [UserController::class, 'UpdatePersonalInfo'])->name('UpdatePersonalInfo');
 
-    Route::post('/UpdatePassword', [UserController::class, 'UpdatePassword']);
+    Route::post('/UpdatePassword', [UserController::class, 'UpdatePassword'])->name('UpdatePassword');
 
 	Route::get('/ChangeUserPassword/{id}', function ($id) {
 		return view('users.change_user_password')->with('id', $id);
-	});
+	})->name('ChangeUserPassword');
 
 	Route::post('/ChangeUserPassword', [UserController::class, 'ChangeUserPassword']);
+	/* ============================= End Routes ============================= */
 
-		Route::resources([
-			'Roles'             =>  RoleController::class,
-			'Users'             =>  UserController::class,
-			'Firms'             =>  FirmsController::class,
-			'CustVend'          =>  CustomerVendorController::class,
-			'ProductCategory'   =>  ProductCategoryController::class,
-		]);
 
 	/*
-	|---------------------------------------------------------------------------
-	| AJAX Routes
-	|---------------------------------------------------------------------------
+	|===========================================================================
+	| Resource Routes
+	|===========================================================================
 	*/
-	
-		Route::post('/SwitchFirm', [AjaxController::class, 'SwitchFirm'])->name('SwitchFirm');
-	
-	/* ----------------------------- End Routes ----------------------------- */
+	Route::resources([
+		'Roles'             =>  RoleController::class,
+		'Users'             =>  UserController::class,
+		'Firms'             =>  FirmsController::class,
+		'CustVend'          =>  CustomerVendorController::class,
+		'ProductCategory'   =>  ProductCategoryController::class,
+	]);
+	/* ============================= End Routes ============================= */
 
+
+	/*
+	|===========================================================================
+	| AJAX Routes
+	|===========================================================================
+	*/
+	Route::post('/SwitchFirm', [AjaxController::class, 'SwitchFirm'])->name('SwitchFirm');
+	/* ============================= End Routes ============================= */
 });
-
-/* ----------------------------- End Routes ----------------------------- */
